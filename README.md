@@ -38,4 +38,5 @@ Generate a test report for the last completed run:
 
 ## Postman Collection
 
-The Postman collection employs environment variables to track all information. Find the required files in the `postman` folder at the project's root.
+The Postman collection employs environment variables to track all information. Find the required files in the 
+`postman-collection` folder at the project's root.
