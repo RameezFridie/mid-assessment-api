@@ -14,6 +14,11 @@ This repository showcases the author's expertise in API automation and consists 
 
 The System Under Test (SUT) for this project is [restful-booker](https://restful-booker.herokuapp.com/). Technical API documentation is available [here](https://restful-booker.herokuapp.com/apidoc/index.html).
 
+## Installation
+
+1. Clone the repository: `git clone https://github.com/RameezFridie/mid-assessment-api`
+2. Navigate to the project root: `cd your-repo`
+
 ## Java Automation Framework
 
 ### Prerequisites
@@ -38,5 +43,15 @@ Generate a test report for the last completed run:
 
 ## Postman Collection
 
-The Postman collection employs environment variables to track all information. Find the required files in the 
+The Postman collection employs environment variables to track all information. Find the required files in the
 `postman-collection` folder at the project's root.
+
+## Examples/Sample Usage
+
+### Java Automation Framework
+```bash
+# Example command to run tests on Windows
+gradle clean test
+
+# Example command to run tests on Mac
+./gradlew clean test
