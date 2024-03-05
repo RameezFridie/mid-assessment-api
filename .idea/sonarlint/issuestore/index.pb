@@ -91,3 +91,5 @@ w
 G.idea/sonarlint/issuestore/e/8/e8d4226dc8e7dbcd8156c673c54ce5a437150b15,a\4\a43ea187f07d7756532bb4c8d808dd5818144da6
 Å
 Q.idea/sonarlint/securityhotspotstore/e/8/e8d4226dc8e7dbcd8156c673c54ce5a437150b15,b\f\bff1d9cdd9c534cafa4038f2af84ed6317652643
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
