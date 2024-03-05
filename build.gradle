@@ -1,14 +1,15 @@
 buildscript {
 
     ext {
-        slf4jVersion = '2.0.9'
-        testngVersion = '7.8.0'
-        restAssuredVersion = '5.3.0'
-        allureTestngVersion = '2.24.0'
-        jacksonDatabindVersion = '2.15.3'
+        slf4jVersion = '2.0.12'
+        testngVersion = '7.9.0'
+        restAssuredVersion = '5.4.0'
+        allureTestngVersion = '2.25.0'
+        jacksonDatabindVersion = '2.16.1'
         lombokVersion = '1.18.30'
         simpleJsonVersion = '1.1.1'
-        jedisVersion = '5.0.1'
+        jedisVersion = '5.1.1'
+        fakerVersion = '1.0.2'
     }
 }
 
@@ -23,15 +24,18 @@ repositories {
 }
 
 dependencies {
+    implementation "com.github.javafaker:javafaker:${fakerVersion}"
     implementation "io.rest-assured:rest-assured:${restAssuredVersion}"
     implementation "org.slf4j:slf4j-api:${slf4jVersion}"
     implementation "org.testng:testng:${testngVersion}"
-    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonDatabindVersion}"
-    implementation "org.projectlombok:lombok:${lombokVersion}"
     implementation "com.googlecode.json-simple:json-simple:${simpleJsonVersion}"
     implementation "redis.clients:jedis:${jedisVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonDatabindVersion}"
+    implementation "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
     testImplementation "org.slf4j:slf4j-jdk14:${slf4jVersion}"
     testImplementation "io.qameta.allure:allure-testng:${allureTestngVersion}"
+
 }
 
 test {

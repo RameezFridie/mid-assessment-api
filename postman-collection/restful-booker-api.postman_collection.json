@@ -1,0 +1,506 @@
+{
+	"info": {
+		"_postman_id": "7aa61708-89ff-43d2-bb39-a4e43652ce72",
+		"name": "restful-booker-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11764042",
+		"_collection_link": "https://restless-capsule-927610.postman.co/workspace/restful-booker~56292f8f-5851-4294-b486-9a1d33fe42c0/collection/11764042-7aa61708-89ff-43d2-bb39-a4e43652ce72?action=share&source=collection_link&creator=11764042"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "getListOfBookings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{path}}",
+							"host": [
+								"{{baseUrl}}{{path}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBookingById",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.sendRequest({\r",
+									"    method: 'POST',\r",
+									"    url: 'https://restful-booker.herokuapp.com/booking/',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({\r",
+									"            firstname: 'Test',\r",
+									"            lastname: 'Data',\r",
+									"            totalprice: 50,\r",
+									"            depositpaid: true,\r",
+									"            bookingdates: {\r",
+									"                checkin: '2024-03-01',\r",
+									"                checkout: '2024-04-01'\r",
+									"            },\r",
+									"            additionalneeds: 'none'\r",
+									"        }),\r",
+									"    },\r",
+									"}, (error, response) => {\r",
+									"    if (!error) {\r",
+									"        const bookingId = response.json()?.bookingid;\r",
+									"        if (bookingId) {\r",
+									"            pm.environment.set('bookingId', bookingId);\r",
+									"        } else {\r",
+									"            console.error('Error: Unable to read response body or booking ID is missing');\r",
+									"        }\r",
+									"    } else {\r",
+									"        console.error('Error:', error);\r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}{{path}}{{bookingId}}",
+							"host": [
+								"{{baseUrl}}{{path}}{{bookingId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "POST",
+			"item": [
+				{
+					"name": "createABooking",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\" : \"{{$randomFirstName}}\",\r\n    \"lastname\" : \"{{$randomLastName}}\",\r\n    \"totalprice\" : 50,\r\n    \"depositpaid\" : false,\r\n    \"bookingdates\" : {\r\n        \"checkin\" : \"{{$randomDatePast}}\",\r\n        \"checkout\" : \"{{$randomDateFuture}}\"\r\n    },\r\n    \"additionalneeds\" : \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{path}}",
+							"host": [
+								"{{baseUrl}}{{path}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PUT",
+			"item": [
+				{
+					"name": "updateExistingBooking",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const baseUrl = 'https://restful-booker.herokuapp.com/';\r",
+									"const bookingPath = 'booking/';\r",
+									"const authPath = 'auth/';\r",
+									"const username = 'admin';\r",
+									"const password = 'password123';\r",
+									"\r",
+									"pm.sendRequest({\r",
+									"    method: 'POST',\r",
+									"    url: baseUrl + authPath,\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({\r",
+									"            username: username,\r",
+									"            password: password\r",
+									"        })\r",
+									"    },\r",
+									"}, (error, response) => {\r",
+									"    if (!error) {\r",
+									"        const cookieToken = response.json()?.token;\r",
+									"        if (cookieToken) {\r",
+									"            pm.environment.set('authToken', cookieToken);\r",
+									"        } else {\r",
+									"            console.error('Error: Unable to read response body or token is missing');\r",
+									"        }\r",
+									"    } else {\r",
+									"        console.error('Error:', error);\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.sendRequest({\r",
+									"    method: 'POST',\r",
+									"    url: baseUrl + bookingPath,\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"        'Authorization': 'Bearer ' + pm.environment.get('authToken')\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({\r",
+									"            firstname: 'Test',\r",
+									"            lastname: 'Data',\r",
+									"            totalprice: 50,\r",
+									"            depositpaid: true,\r",
+									"            bookingdates: {\r",
+									"                checkin: '2024-03-01',\r",
+									"                checkout: '2024-04-01'\r",
+									"            },\r",
+									"            additionalneeds: 'none'\r",
+									"        }),\r",
+									"    },\r",
+									"}, (error, response) => {\r",
+									"    if (!error) {\r",
+									"        const bookingId = response.json()?.bookingid;\r",
+									"        if (bookingId) {\r",
+									"            pm.environment.set('bookingId', bookingId);\r",
+									"        } else {\r",
+									"            console.error('Error: Unable to read response body or booking ID is missing');\r",
+									"        }\r",
+									"    } else {\r",
+									"        console.error('Error:', error);\r",
+									"    }\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token={{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\" : \"{{$randomFirstName}}\",\r\n    \"lastname\" : \"{{$randomLastName}}\",\r\n    \"totalprice\" : 1000,\r\n    \"depositpaid\" : false,\r\n    \"bookingdates\" : {\r\n        \"checkin\" : \"{{$randomDatePast}}\",\r\n        \"checkout\" : \"{{$randomDateFuture}}\"\r\n    },\r\n    \"additionalneeds\" : \"Food\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{path}}{{bookingId}}",
+							"host": [
+								"{{baseUrl}}{{path}}{{bookingId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "partialUpdateExistingBooking",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const baseUrl = 'https://restful-booker.herokuapp.com/';\r",
+									"const bookingPath = 'booking/';\r",
+									"const authPath = 'auth/';\r",
+									"const username = 'admin';\r",
+									"const password = 'password123';\r",
+									"\r",
+									"pm.sendRequest({\r",
+									"    method: 'POST',\r",
+									"    url: baseUrl + authPath,\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({\r",
+									"            username: username,\r",
+									"            password: password\r",
+									"        })\r",
+									"    },\r",
+									"}, (error, response) => {\r",
+									"    if (!error) {\r",
+									"        const cookieToken = response.json()?.token;\r",
+									"        if (cookieToken) {\r",
+									"            pm.environment.set('authToken', cookieToken);\r",
+									"        } else {\r",
+									"            console.error('Error: Unable to read response body or token is missing');\r",
+									"        }\r",
+									"    } else {\r",
+									"        console.error('Error:', error);\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.sendRequest({\r",
+									"    method: 'POST',\r",
+									"    url: baseUrl + bookingPath,\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"        'Authorization': 'Bearer ' + pm.environment.get('authToken')\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({\r",
+									"            firstname: 'Test',\r",
+									"            lastname: 'Data',\r",
+									"            totalprice: 50,\r",
+									"            depositpaid: true,\r",
+									"            bookingdates: {\r",
+									"                checkin: '2024-03-01',\r",
+									"                checkout: '2024-04-01'\r",
+									"            },\r",
+									"            additionalneeds: 'none'\r",
+									"        }),\r",
+									"    },\r",
+									"}, (error, response) => {\r",
+									"    if (!error) {\r",
+									"        const bookingId = response.json()?.bookingid;\r",
+									"        if (bookingId) {\r",
+									"            pm.environment.set('bookingId', bookingId);\r",
+									"        } else {\r",
+									"            console.error('Error: Unable to read response body or booking ID is missing');\r",
+									"        }\r",
+									"    } else {\r",
+									"        console.error('Error:', error);\r",
+									"    }\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token={{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\" : \"{{$randomFirstName}}\",\r\n    \"lastname\" : \"{{$randomLastName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{path}}{{bookingId}}",
+							"host": [
+								"{{baseUrl}}{{path}}{{bookingId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DELETE",
+			"item": [
+				{
+					"name": "deleteAnExistingBooking",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const baseUrl = 'https://restful-booker.herokuapp.com/';\r",
+									"const bookingPath = 'booking/';\r",
+									"const authPath = 'auth/';\r",
+									"const username = 'admin';\r",
+									"const password = 'password123';\r",
+									"\r",
+									"pm.sendRequest({\r",
+									"    method: 'POST',\r",
+									"    url: baseUrl + authPath,\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({\r",
+									"            username: username,\r",
+									"            password: password\r",
+									"        })\r",
+									"    },\r",
+									"}, (error, response) => {\r",
+									"    if (!error) {\r",
+									"        const cookieToken = response.json()?.token;\r",
+									"        if (cookieToken) {\r",
+									"            pm.environment.set('authToken', cookieToken);\r",
+									"        } else {\r",
+									"            console.error('Error: Unable to read response body or token is missing');\r",
+									"        }\r",
+									"    } else {\r",
+									"        console.error('Error:', error);\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.sendRequest({\r",
+									"    method: 'POST',\r",
+									"    url: baseUrl + bookingPath,\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"        'Authorization': 'Bearer ' + pm.environment.get('authToken') // Use the authToken from the environment\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({\r",
+									"            firstname: 'Test',\r",
+									"            lastname: 'Data',\r",
+									"            totalprice: 50,\r",
+									"            depositpaid: true,\r",
+									"            bookingdates: {\r",
+									"                checkin: '2024-03-01',\r",
+									"                checkout: '2024-04-01'\r",
+									"            },\r",
+									"            additionalneeds: 'none'\r",
+									"        }),\r",
+									"    },\r",
+									"}, (error, response) => {\r",
+									"    if (!error) {\r",
+									"        const bookingId = response.json()?.bookingid;\r",
+									"        if (bookingId) {\r",
+									"            pm.environment.set('bookingId', bookingId);\r",
+									"        } else {\r",
+									"            console.error('Error: Unable to read response body or booking ID is missing');\r",
+									"        }\r",
+									"    } else {\r",
+									"        console.error('Error:', error);\r",
+									"    }\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token={{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}{{path}}{{bookingId}}",
+							"host": [
+								"{{baseUrl}}{{path}}{{bookingId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "Authorization",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"admin\",\r\n    \"password\" : \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{authPath}}",
+							"host": [
+								"{{baseUrl}}{{authPath}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
