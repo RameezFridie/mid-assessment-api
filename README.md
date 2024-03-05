@@ -1,46 +1,41 @@
 # Restful Booking API Automation
 
-This repository was created to display the author's API automation knowledge.
+This repository showcases the author's expertise in API automation and consists of two main parts:
 
-This repository consists of two parts.
-
-- A Postman Collection
-- Java automation framework using RestAssured
+1. **Postman Collection**
+2. **Java Automation Framework using RestAssured**
 
 ## Requirements
 
-- Java11(JDK 11 or Higher)
+- Java 11 (JDK 11 or Higher)
+- Browser
 
+## System Under Test (SUT)
 
-## System under test
-
-The System Under Test(SUT) is *restful-booker*.
-
-*Restful-booker API* is your gateway to diving deeper into the realm of 
-API testing and experimenting with various testing tools.Technical API documentation is 
-available at https://restful-booker.herokuapp.com/apidoc/index.html.
+The System Under Test (SUT) for this project is [restful-booker](https://restful-booker.herokuapp.com/). Technical API documentation is available [here](https://restful-booker.herokuapp.com/apidoc/index.html).
 
 ## Java Automation Framework
 
 ### Prerequisites
-Use an IDE of your choice. Common choices include IntelliJ IDEA, Eclipse, or Visual Studio Code.
-To be able to run the automation the file called ```data.properties``` is required.
 
+- Choose an IDE for development (e.g., IntelliJ IDEA, Eclipse, or Visual Studio Code).
+- Ensure the presence of a `data.properties` file to run the automation successfully.
 
 ### Running
 
-The Java framework uses gradle as the main building tool.
+The Java framework utilizes Gradle as the main building tool. To run the tests:
 
-On a Windows operating system, navigate to the root of the project in your file system 
-via command line. Then run : ```gradle clean test```
+- On a Windows operating system, navigate to the project root in your command line.
+- Run the command: `gradle clean test`
+- On Mac machine you can run: `./gradlew clean test`
 
 ### Reporting
 
-A test report can be generated of the last completed test run. Running command:````gradlew allureReport```` or
-````./gradlew allureReport```` respectively, will create the report.
-The report will be saved into a generated folder named test at location build\reports\. 
-The index.html is the main entry-point to the report which is best viewed in Chrome browser.
+Generate a test report for the last completed run:
+
+- Run the command: `gradlew allureReport` (or `./gradlew allureReport` on Unix).
+- The report will be available in the `build\reports\test` folder. Open `index.html` in a Chrome browser for the best viewing experience.
 
 ## Postman Collection
-The Postman collection utilizes environment variables to keep track of all the information used in the collection.
-The two files required to use postman can be found in the postman folder at the base of this repository.
+
+The Postman collection employs environment variables to track all information. Find the required files in the `postman` folder at the project's root.
