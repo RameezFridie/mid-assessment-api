@@ -1,5 +1,4 @@
 buildscript {
-
     ext {
         slf4jVersion = '2.0.12'
         testngVersion = '7.9.0'
@@ -12,7 +11,6 @@ buildscript {
         fakerVersion = '1.0.2'
     }
 }
-
 
 plugins {
     id 'java'
