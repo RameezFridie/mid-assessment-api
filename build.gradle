@@ -18,12 +18,6 @@ plugins {
     id 'io.qameta.allure' version '2.11.2'
 }
 
-//allure {
-//    report {
-//        reportDir.set(file('test-report'))
-//    }
-//}
-
 repositories {
     mavenCentral()
 }
