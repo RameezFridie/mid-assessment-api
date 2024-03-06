@@ -1,4 +1,5 @@
 # Restful Booking API Automation
+### Mid SDET Assessment
 
 This repository showcases the author's expertise in API automation and consists of two main parts:
 
