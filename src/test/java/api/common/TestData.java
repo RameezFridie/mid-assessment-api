@@ -16,14 +16,25 @@ public class TestData {
     public static final String LAST_NAME = faker.name().lastName();
     public static final String UPDATE_FIRST_NAME = faker.name().firstName();
     public static final String UPDATE_LAST_NAME = faker.name().lastName();
-    public static final String DATE_FROM = generateRandomDate();
-    public static final String DATE_TO = generateRandomDate();
+    public static final String DATE_FROM = generateRandomFromDate();
+    public static final String DATE_TO = generateRandomToDate();
     public static final int PRICE = 100;
     public static final String BOOKING_ID_PATH = "bookingid";
 
-    private static String generateRandomDate() {
+    private static String generateRandomFromDate() {
         long millis = System.currentTimeMillis() - TimeUnit.DAYS.toMillis(faker.number().numberBetween(1, 365));
         Date randomDate = new Date(millis);
         return dateFormat.format(randomDate);
+    }
+
+    private static String generateRandomToDate() {
+        try {
+            Date fromDateObj = dateFormat.parse(TestData.DATE_FROM);
+            long millis = fromDateObj.getTime() + TimeUnit.DAYS.toMillis(faker.number().numberBetween(1, 30));
+            return dateFormat.format(new Date(millis));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
