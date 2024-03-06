@@ -1,5 +1,5 @@
 # Restful Booking API Automation
-### Mid SDET Assessment
+## Mid SDET Assessment Section 3
 
 This repository showcases the author's expertise in API automation and consists of two main parts:
 
