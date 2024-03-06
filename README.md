@@ -26,6 +26,7 @@ The System Under Test (SUT) for this project is [restful-booker](https://restful
 
 - Choose an IDE for development (e.g., IntelliJ IDEA, Eclipse, or Visual Studio Code).
 - Ensure the presence of a `data.properties` file to run the automation successfully.
+- `data.properties` file should have the data required for the automation to run.
 
 ### Running
 
