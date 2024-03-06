@@ -42,7 +42,7 @@ Generate a test report for the last completed run:
 
 - Run the command: `gradlew allureReport` (or `./gradlew allureReport` on Unix).
 - The report will be available in the `test-report` folder. Open `index.html` in a Chrome browser for the best viewing experience.
-
+- This report can be opened on a browser as a server using `gradlew allureServe` or `./gradlew allureServe`.
 ## Postman Collection
 
 The Postman collection employs environment variables to track all information. Find the required files in the
