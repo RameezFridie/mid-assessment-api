@@ -41,7 +41,7 @@ The Java framework utilizes Gradle as the main building tool. To run the tests:
 Generate a test report for the last completed run:
 
 - Run the command: `gradlew allureReport` (or `./gradlew allureReport` on Unix).
-- The report will be available in the `build\reports\test` folder. Open `index.html` in a Chrome browser for the best viewing experience.
+- The report will be available in the `test-report` folder. Open `index.html` in a Chrome browser for the best viewing experience.
 
 ## Postman Collection
 
