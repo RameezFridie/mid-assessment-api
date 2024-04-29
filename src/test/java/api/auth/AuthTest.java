@@ -10,15 +10,12 @@ import static org.hamcrest.Matchers.*;
 @Test
 public class AuthTest extends AuthBase {
 
-    private static CommonObjects authObjects;
-
     @Description("As an API user, I want to successfully retrieve a token.")
     public void testRetrieveTokenSuccessfully() {
-        authObjects = new CommonObjects();
 
         given().
                 header(getCommonHeader()).
-                body(authObjects.getAuthBody(customConfig.getUsername(), customConfig.getPassword())).
+                body(getAuthBody(customConfig.getUsername(), customConfig.getPassword())).
                 when().
                 post().
                 then().
@@ -29,11 +26,10 @@ public class AuthTest extends AuthBase {
 
     @Description("As an API user, I want to unsuccessfully retrieve a token using an invalid username and password.")
     public void testAttemptToRetrieveTokenWithInvalidCredentials() {
-        authObjects = new CommonObjects();
 
         given().
                 header(getCommonHeader()).
-                body(authObjects.getAuthBody("invalidUserName", "invalidPassword")).
+                body(getAuthBody("invalidUserName", "invalidPassword")).
                 when().
                 post().
                 then().

@@ -15,9 +15,9 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 public abstract class BaseTest {
 
+    private static final Logger LOG = getLogger(lookup().lookupClass());
     public static Properties properties;
     public static CustomConfig customConfig;
-    private static final Logger LOG = getLogger(lookup().lookupClass());
 
     @BeforeMethod
     public void setup() throws IOException {
