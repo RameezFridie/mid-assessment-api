@@ -40,7 +40,9 @@ public class AuthBase extends BaseTest {
         return new Header("Cookie", "token=" + token);
     }
 
-    public Header getInvaldAuthHeader() {return new Header("Cookie", "token=invalid");}
+    public Header getInvaldAuthHeader() {
+        return new Header("Cookie", "token=invalid");
+    }
 
     public Header getCommonHeader() {
         return new Header("Content-Type", "application/json");
