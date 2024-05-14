@@ -12,7 +12,6 @@ public class AuthTest extends AuthBase {
 
     @Description("As an API user, I want to successfully retrieve a token.")
     public void testRetrieveTokenSuccessfully() {
-
         given().
                 header(getCommonHeader()).
                 body(getAuthBody(customConfig.getUsername(), customConfig.getPassword())).
@@ -26,7 +25,6 @@ public class AuthTest extends AuthBase {
 
     @Description("As an API user, I want to unsuccessfully retrieve a token using an invalid username and password.")
     public void testAttemptToRetrieveTokenWithInvalidCredentials() {
-
         given().
                 header(getCommonHeader()).
                 body(getAuthBody("invalidUserName", "invalidPassword")).
