@@ -27,7 +27,7 @@ public class CreateABookingTest extends BookingsBase {
         deleteABooking(getAuthHeader(), bookingId);
     }
 
-    @Description("As an API user, I should be able to get an error when passing an empty object")
+    @Description("As an API user, I should not be able to create a booking with an empty object.")
     public void testErrorHandlingWhenPassingEmptyObject() {
         JSONObject emptyJSONObject = new JSONObject();
         createABooking(emptyJSONObject).
