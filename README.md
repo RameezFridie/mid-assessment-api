@@ -28,13 +28,29 @@ The System Under Test (SUT) for this project is [restful-booker](https://restful
 - Ensure the presence of a `data.properties` file to run the automation successfully.
 - `data.properties` file should have the data required for the automation to run.
 
+### Other Libraries
+
+- [**Hamcrest**](https://hamcrest.org/JavaHamcrest/tutorial) for Matchers
+- [**Project Lombok**](https://projectlombok.org/) to get auto-generated Getter and Setter methods.
+- [**TestNG**](https://testng.org/doc/) to get annotations and assertion methods in order to execute the tests.
+- [**RestAssured**](https://rest-assured.io/) to run the api automation tests
+
 ### Running
 
 The Java framework utilizes Gradle as the main building tool. To run the tests:
 
-- On a Windows operating system, navigate to the project root in your command line.
+- On a Windows operating system, navigate to the project root in your command line. 
+- One could also right-click on the **tests** package and click **run tests**
 - Run the command: `gradle clean test`
 - On Mac machine you can run: `./gradlew clean test`
+
+### Project Structure
+
+This project follows a certain structure, where:
+
+- The tests are found under the **tests** package.
+- The classes that provide test data are found under the **common** package.
+- The **CustomConfig.java** class for configuring the `data.properties` is found under the overall web folder.
 
 ### Reporting
 
